@@ -1,5 +1,7 @@
 # Контур проектов · Финансы Битрикс24
 
+[![Автоматические проверки](https://github.com/denisnasarov2021-coder/bitrix-project-finance/actions/workflows/check.yml/badge.svg)](https://github.com/denisnasarov2021-coder/bitrix-project-finance/actions/workflows/check.yml)
+
 Веб-приложение для совместного ручного учёта доходов и расходов по проектам. Подготовлено как тестовое задание для аналитика сопровождения и развития действующих порталов Битрикс24.
 
 **Быстрая проверка:** Node.js 24 LTS, затем две команды из каталога проекта:
