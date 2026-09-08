@@ -1,0 +1,14 @@
+import { existsSync, copyFileSync } from 'node:fs';
+import { spawnSync, spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+const root=fileURLToPath(new URL('..',import.meta.url));
+if (!existsSync(resolve(root,'.dev.vars'))) copyFileSync(resolve(root,'.env.example'),resolve(root,'.dev.vars'));
+const wrangler=resolve(root,'node_modules/wrangler/bin/wrangler.js');
+const migration=spawnSync(process.execPath,[wrangler,'d1','migrations','apply','DB','--local','--config','wrangler.local.jsonc'],{cwd:root,stdio:'inherit'});
+if(migration.status!==0) process.exit(migration.status||1);
+if(process.argv.includes('--prepare-only')) process.exit(0);
+const vite=resolve(root,'node_modules/vite/bin/vite.js');
+const child=spawn(process.execPath,[vite,'--host','127.0.0.1'],{cwd:root,stdio:'inherit'});
+child.on('exit',code=>process.exit(code||0));
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>child.kill(signal));

@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788880491439,
+      "tag": "0000_public_kree",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788880543857,
+      "tag": "0001_entry_audit",
+      "breakpoints": true
+    }
+  ]
+}
